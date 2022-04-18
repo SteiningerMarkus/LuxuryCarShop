@@ -1,0 +1,21 @@
+<div fxFill fxLayoutAlign="center center">
+  <mat-card class="login-card" fxLayout="column" fxLayoutAlign="space-around center">
+    <img class="logo" src="assets/logo.jpg" alt="logo">
+    <form class="input-wrapper" fxLayout="column" fxLayoutAlign="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Benutzername</mat-label>
+        <input autofocus matInput [(ngModel)]="username" name="username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Kennwort</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password" name="password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button type="submit" (click)="login()" mat-raised-button color="primary" fxFlexAlign="center">
+        <mat-icon>login</mat-icon>
+      </button>
+    </form>
+  </mat-card>
+</div>
