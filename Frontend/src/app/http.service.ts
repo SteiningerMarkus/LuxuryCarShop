@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from "./model/user";
 import { HttpClient } from "@angular/common/http";
+import { Car } from "./model/car";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class HttpService {
   }
 
   public login(username: string, password: string) {
-    return this.http.post(`${this.baseurl}/user/login`, { username: username, password: password });
+    return this.http.post<User>(`${this.baseurl}/user/login`, { username: username, password: password });
   }
 
   public getAvailableCars(username?: string) {
@@ -24,11 +25,17 @@ export class HttpService {
     if (username != null)
       url += `?username=${username}`;
 
-    return this.http.get(url);
+    return this.http.get<Car[]>(url);
   }
 
   public reserveCar(username: string, carId: number) {
-    this.http.post(`${this.baseurl}/cars/${carId}/reserve?username=${username}`, null);
+    console.log(`${this.baseurl}/cars/${carId}/reserve?username=${username}`);
+    this.http.post(`${this.baseurl}/cars/${carId}/reserve?username=${username}`, {});
+  }
+
+  public unreserveCar(carId: number) {
+    console.log("unreserve");
+    this.http.post(`${this.baseurl}/cars/${carId}/unreserve`, null);
   }
 
   public pickUpCar(carId: number) {

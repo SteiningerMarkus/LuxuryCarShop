@@ -1,5 +1,10 @@
 <div fxFill fxLayoutAlign="center center">
   <mat-card class="login-card" fxLayout="column" fxLayoutAlign="space-around center">
+    <div fxFlexAlign="stretch">
+      <button mat-icon-button (click)="shared.navTo('overview')">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+    </div>
     <img class="logo" src="assets/logo.jpg" alt="logo">
     <form class="input-wrapper" fxLayout="column" fxLayoutAlign="space-around">
       <mat-form-field appearance="outline">
@@ -13,6 +18,7 @@
           <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
+      <a fxFlexAlign="end" href="/register">Registrieren</a>
       <button type="submit" (click)="login()" mat-raised-button color="primary" fxFlexAlign="center">
         <mat-icon>login</mat-icon>
       </button>

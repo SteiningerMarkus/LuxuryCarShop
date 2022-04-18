@@ -1,6 +1,20 @@
 <button mat-fab
         color="primary"
         id="login-button"
-        (click)="navToLogin()">
-  <mat-icon>login</mat-icon>
+        (click)="logInOrOut()">
+  <mat-icon>{{shared.activeUser == undefined ? "login" : "logout"}}</mat-icon>
 </button>
+
+<div fxFill fxLayoutAlign="center center">
+  <mat-card class="overview-card" fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-form-field appearance="fill">
+      <input matInput
+             placeholder="Suche"
+             [(ngModel)]="filterText"
+             (input)="updateShownCars()">
+    </mat-form-field>
+    <mat-accordion fxFlex displayMode="flat">
+      <app-car *ngFor="let car of shownCars" [car]="car"></app-car>
+    </mat-accordion>
+  </mat-card>
+</div>

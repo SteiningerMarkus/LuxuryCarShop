@@ -1,1 +1,37 @@
-<p>register works!</p>
+<div fxFill fxLayoutAlign="center center">
+  <mat-card class="register-card" fxLayout="column" fxLayoutAlign="space-around center">
+    <div fxFlexAlign="stretch">
+      <button mat-icon-button (click)="shared.navTo('login')">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+    </div>
+    <h1>Registrieren</h1>
+    <form class="input-wrapper" fxLayout="column" fxLayoutAlign="space-around">
+      <mat-form-field appearance="outline">
+        <mat-label>Email-Adresse</mat-label>
+        <input autofocus matInput [(ngModel)]="user.email" name="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Benutzername</mat-label>
+        <input autofocus matInput [(ngModel)]="user.username" name="username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Kennwort</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="user.password" name="password">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Kennwort wiederholen</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password2" name="password2">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button type="submit" (click)="register()" mat-raised-button color="primary" fxFlexAlign="center">
+        <mat-icon>login</mat-icon>
+      </button>
+    </form>
+  </mat-card>
+</div>

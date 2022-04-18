@@ -1,0 +1,19 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{shared.getTitleString(car)}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div *ngIf="shared.activeUser == null; else actions">
+    <a href="/login">Loggen Sie sich ein, um alle Funktionen nutzen zu können!</a>
+  </div>
+  <ng-template #actions>
+    <div *ngIf="car.pickUpDate == undefined; else boughtActions">
+      <button mat-raised-button (click)="toggleReserve()">{{car.reservedOrBoughtBy == undefined ? 'Reservieren' : 'Reservierung aufheben'}}</button>
+      <button mat-raised-button (click)="buy()">Kaufen</button>
+    </div>
+    <ng-template #boughtActions>
+      <button mat-raised-button (click)="pickup()">Abholung bestätigen</button>
+    </ng-template>
+  </ng-template>
+</mat-expansion-panel>

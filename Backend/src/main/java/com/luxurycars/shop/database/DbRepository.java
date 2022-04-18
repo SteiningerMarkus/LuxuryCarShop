@@ -37,7 +37,7 @@ public class DbRepository {
         return em.createQuery("select c from Car c where c.reservedOrBoughtBy is null", Car.class).getResultList();
     }
 
-    public List<Car> getAvailableCars(int username) {
+    public List<Car> getAvailableCars(String username) {
         return em.createQuery("select c from Car c where c.reservedOrBoughtBy is null or c.reservedOrBoughtBy.username = :username", Car.class).setParameter("username", username).getResultList();
     }
 

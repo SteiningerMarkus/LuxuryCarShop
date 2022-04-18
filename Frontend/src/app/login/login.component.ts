@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
 import { HttpService } from "../http.service";
+import { SharedService } from "../shared.service";
 
 @Component({
   selector: 'app-login',
@@ -12,15 +12,19 @@ export class LoginComponent {
   username: string = "";
   password: string = "";
 
-  constructor(private router: Router, private http: HttpService) { }
+  constructor(private http: HttpService, public shared: SharedService) {
+  }
 
   login() {
     this.http.login(this.username, this.password).subscribe({
-        next: _ => this.router.navigate(["overview"]),
-        error: e => {
-          if (e.status == 401 || e.status == 404)
-            alert("Invalid username/password!");
-        }
-      });
+      next: data => {
+        this.shared.activeUser = data;
+        this.shared.navTo("overview");
+      },
+      error: e => {
+        if (e.status === 401 || e.status === 404)
+          alert("Ungültige Anmeldedaten!");
+      }
+    });
   }
 }

@@ -3,3 +3,17 @@
   top: 25px;
   right: 25px;
 }
+
+.overview-card {
+  width: 70vw;
+  height: 75vh;
+  padding: 0;
+}
+
+input {
+  padding-left: 13.5px;
+}
+
+.mat-accordion {
+  overflow-y: auto;
+}

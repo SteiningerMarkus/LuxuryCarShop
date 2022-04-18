@@ -13,13 +13,17 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { MatCardModule } from "@angular/material/card";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { CarComponent } from './overview/car/car.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OverviewComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CarComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule,
     MatButtonModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

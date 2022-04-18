@@ -33,6 +33,8 @@ public class LuxuryCarShopService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public RestResponse<ShopUser> login(CredentialsDto credentials) {
+        System.out.println("login ------------------------");
+
         ShopUser user = repo.getUser(credentials.getUsername());
 
         if (user == null)
@@ -45,13 +47,15 @@ public class LuxuryCarShopService {
     @GET
     @Path("/cars/available")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Car> getAvailableCars(@QueryParam("username") Integer username) {
+    public List<Car> getAvailableCars(@QueryParam("username") String username) {
         return username == null ? repo.getAvailableCars() : repo.getAvailableCars(username);
     }
 
     @POST
     @Path("/cars/{carId}/reserve")
     public RestResponse reserveCar(@QueryParam("username") String username, @PathParam("carId") int carId) {
+        System.out.println("reserve ------------------------");
+
         ShopUser user = repo.getUser(username);
         Car car = repo.getCar(carId);
 
@@ -59,6 +63,19 @@ public class LuxuryCarShopService {
             return RestResponse.notFound();
 
         car.setReservedOrBoughtBy(user);
+
+        return RestResponse.ok();
+    }
+
+    @POST
+    @Path("/cars/{carId}/unreserve")
+    public RestResponse unreserveCar(@PathParam("carId") int carId) {
+        Car car = repo.getCar(carId);
+
+        if (car == null)
+            return RestResponse.notFound();
+
+        car.setReservedOrBoughtBy(null);
 
         return RestResponse.ok();
     }
