@@ -30,7 +30,7 @@ export class HttpService {
 
   public reserveCar(username: string, carId: number) {
     console.log(`${this.baseurl}/cars/${carId}/reserve?username=${username}`);
-    this.http.post(`${this.baseurl}/cars/${carId}/reserve?username=${username}`, {});
+    this.http.post(`${this.baseurl}/cars/${carId}/reserve?username=${username}`, null);
   }
 
   public unreserveCar(carId: number) {
@@ -42,7 +42,7 @@ export class HttpService {
     return this.http.post(`${this.baseurl}/cars/pickup?carId=${carId}`, null);
   }
 
-  public buy(username: number, carId: number, pickupDate: Date) {
+  public buy(username: string, carId: number, pickupDate: Date) {
     return this.http.post(`${this.baseurl}/cars/buy?username=${username}&carId=${carId}&pickupDate=${pickupDate}`, null);
   }
 }

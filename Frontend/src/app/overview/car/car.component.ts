@@ -22,10 +22,11 @@ export class CarComponent {
   }
 
   buy() {
-
+    let date: string = prompt("Zu welchem Datum wollen Sie das Auto abholen?")!;
+    this.http.buy(this.shared.activeUser!.username, this.car.id, new Date(date)).subscribe(_ => alert("Auto erfolgreich gekauft!"));
   }
 
   pickup() {
-
+    this.http.pickUpCar(this.car.id).subscribe(_ => alert("Danke für die Bestätigung der Abholung!"));
   }
 }
